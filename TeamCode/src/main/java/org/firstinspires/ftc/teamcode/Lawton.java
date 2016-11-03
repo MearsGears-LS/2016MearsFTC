@@ -47,18 +47,16 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  This is lawton's TeleOp program :)
  */
 
-@TeleOp(name="LawtonManual")
+@TeleOp(name="Lawtona")
 
 public class Lawton extends OpMode{
 
     DcMotor left;
     DcMotor right;
-    DcMotor launcher1;
-    DcMotor launcher2;
+    //DcMotor launcher1;
+    //DcMotor launcher2;
 
-    Servo leftClaw;
-    Servo rightClaw;
-    Servo armMovement;
+
 
     double leftwheelpower;
     double rightwheelpower;
@@ -69,44 +67,50 @@ public class Lawton extends OpMode{
     public  void init() {
         left = hardwareMap.dcMotor.get("leftwheel");
         right = hardwareMap.dcMotor.get("rightwheel");
-        right.setDirection(DcMotor.Direction.REVERSE);
+        left.setDirection(DcMotor.Direction.REVERSE);
 
-        launcher1 = hardwareMap.dcMotor.get("particlemotor");
-        launcher2 = hardwareMap.dcMotor.get("particlemotor2");
-        launcher1.setDirection(DcMotor.Direction.REVERSE);
+        //launcher1 = hardwareMap.dcMotor.get("particlemotor");
+        //launcher2 = hardwareMap.dcMotor.get("particlemotor2");
+        //launcher1.setDirection(DcMotor.Direction.REVERSE);
 
-        leftClaw = hardwareMap.servo.get("leftservo");
-        rightClaw = hardwareMap.servo.get("rightservo");
-        armMovement = hardwareMap.servo.get("arm");
+        //leftClaw = hardwareMap.servo.get("leftservo");
+        //rightClaw = hardwareMap.servo.get("rightservo");
+        //armMovement = hardwareMap.servo.get("arm");
     }
 
     @Override()
     public void loop(){
-        leftwheelpower = gamepad1.left_stick_y;
-        rightwheelpower = gamepad1.right_stick_y;
-        left.setPower(-leftwheelpower);
-        right.setPower(-rightwheelpower);
+        if(gamepad2.right_bumper){
+            if (gamepad1.right_bumper){
+                leftwheelpower = gamepad1.left_stick_y;
+                rightwheelpower = gamepad1.right_stick_y;
+                left.setPower(-leftwheelpower);
+                right.setPower(-rightwheelpower);
+            }
+            else {
+                leftwheelpower = gamepad2.left_stick_y;
+                rightwheelpower = gamepad2.right_stick_y;
+                left.setPower(-leftwheelpower);
+                right.setPower(-rightwheelpower);
+            }
+            leftwheelpower = gamepad2.left_stick_y;
+            rightwheelpower = gamepad2.right_stick_y;
+            left.setPower(-leftwheelpower);
+            right.setPower(-rightwheelpower);
 
-        launcherpower = gamepad2.left_trigger;
-        launcher1.setPower(-launcherpower);
-        launcher2.setPower(-launcherpower);
-
-        if (gamepad2.right_bumper){
-            leftClaw.setPosition(1);
-            rightClaw.setPosition(1);
-        }else{
-            leftClaw.setPosition(0);
-            rightClaw.setPosition(0);
-
-        if (gamepad2.dpad_up){
-            armMovement.setPosition(1);
-        }else{
-            armMovement.setPosition(0);
+        }else {
+            leftwheelpower = gamepad1.left_stick_y;
+            rightwheelpower = gamepad1.right_stick_y;
+            left.setPower(-leftwheelpower);
+            right.setPower(-rightwheelpower);
         }
-         launcher1.setPower(1);
-         Thread
+        //launcherpower = gamepad2.left_trigger;
+        //launcher1.setPower(-launcherpower);
+        //launcher2.setPower(-launcherpower);
+
+
 
 
         }
     }
-}
+
