@@ -53,14 +53,14 @@ public class Lawton extends OpMode{
 
     DcMotor left;
     DcMotor right;
-    //DcMotor launcher1;
-    //DcMotor launcher2;
 
+    Servo leftarm;
+    Servo rightarm;
 
 
     double leftwheelpower;
     double rightwheelpower;
-    double launcherpower;
+
 
 
     @Override
@@ -69,13 +69,10 @@ public class Lawton extends OpMode{
         right = hardwareMap.dcMotor.get("rightwheel");
         left.setDirection(DcMotor.Direction.REVERSE);
 
-        //launcher1 = hardwareMap.dcMotor.get("particlemotor");
-        //launcher2 = hardwareMap.dcMotor.get("particlemotor2");
-        //launcher1.setDirection(DcMotor.Direction.REVERSE);
 
-        //leftClaw = hardwareMap.servo.get("leftservo");
-        //rightClaw = hardwareMap.servo.get("rightservo");
-        //armMovement = hardwareMap.servo.get("arm");
+        leftarm = hardwareMap.servo.get("leftservo");
+        rightarm = hardwareMap.servo.get("rightservo");
+        leftarm = hardwareMap.servo.get("arm");
     }
 
     @Override()
